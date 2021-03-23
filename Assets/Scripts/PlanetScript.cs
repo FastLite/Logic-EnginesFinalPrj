@@ -23,7 +23,7 @@ public class PlanetScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bullet") || other.gameObject.CompareTag("Enemy"))
         {
-            ChangeHealth(other.gameObject.GetComponent<Enemy>().damage);
+            ChangeHealth(other.gameObject.GetComponent<Enemy>().EnemySo.collisionDamage);
             
             Destroy(other.gameObject);
             //later change to object pooling

@@ -1,20 +1,27 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int damage = 1;
+    [SerializeField]
+    public EnemySO EnemySo;
     public int health = 1;
-    public int maxHealth = 1;
 
+
+    private void Update()
+    {
+        //Move enemy towords the point on the pre determined speed 
+        transform.position = Vector3.MoveTowards(gameObject.transform.position, new Vector3(0, 0), EnemySo.speed * Time.deltaTime);
+    }
 
     public void ChangeHealth(int changeValue)
     {
         health += changeValue;
-        if (health > maxHealth)
+        if (health > EnemySo.maxHealth)
         {
-            health = maxHealth;
+            health = EnemySo.maxHealth;
         }
     }
 }

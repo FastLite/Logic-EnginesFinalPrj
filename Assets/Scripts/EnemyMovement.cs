@@ -11,7 +11,6 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         
-        //Move enemy towords the point on the pre determined speed 
-        transform.position = Vector3.MoveTowards(gameObject.transform.position, new Vector3(0, 0), speed * Time.deltaTime);
+        
     }
 }
