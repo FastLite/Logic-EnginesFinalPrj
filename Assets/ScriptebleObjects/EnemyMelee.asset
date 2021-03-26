@@ -16,3 +16,4 @@ MonoBehaviour:
   collisionDamage: 20
   bulletDamage: 0
   speed: 1.2
+  stopDistance: 2

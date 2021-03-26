@@ -24,6 +24,9 @@ public class ObjectPooling : MonoBehaviour
     public int eachObjectToCreate = 3;
 
     public List<string> objectsToInitialize;
+    
+    
+    public GameObject projectile1;
 
     private void Awake()
     {
@@ -80,14 +83,58 @@ public class ObjectPooling : MonoBehaviour
         
     }
 
-    public GameObject GetObject()
+    public GameObject GetObject(string objectToCreate)
     {
-        for (int i = 0; i < allCreatedBullets.Count; i++)
+        
+        
+        switch (objectToCreate)
         {
-            if (allCreatedBullets[i].activeInHierarchy)
-            {
-                return allCreatedBullets[i];
-            }
+            case "bullet":
+                foreach (var t in allCreatedBullets)
+                {
+                    if (t.activeInHierarchy)
+                    {
+                        return t;
+                    }
+                }
+                break;
+            case "bulletTurret":
+                foreach (var t in allCreatedBullets)
+                {
+                    if (t.activeInHierarchy)
+                    {
+                        return t;
+                    }
+                }
+                break;
+            case "enemyArtillery":
+                foreach (var t in allCreatedBullets)
+                {
+                    if (t.activeInHierarchy)
+                    {
+                        return t;
+                    }
+                }
+                break;
+            case "enemyRange":
+                foreach (var t in allCreatedBullets)
+                {
+                    if (t.activeInHierarchy)
+                    {
+                        return t;
+                    }
+                }
+                break;
+            case "enemyMelee":
+                foreach (var t in allEnemyMelee)
+                {
+                    if (t.activeInHierarchy)
+                    {
+                        return t;
+                    }
+                }
+                break;
+            
         }
 
         GameObject go = Instantiate(bullet);

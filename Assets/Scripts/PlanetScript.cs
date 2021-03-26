@@ -21,12 +21,13 @@ public class PlanetScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Bullet") || other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("EnemyBullet") || other.gameObject.CompareTag("Enemy"))
         {
-            ChangeHealth(other.gameObject.GetComponent<Enemy>().EnemySo.collisionDamage);
+            ChangeHealth(-other.gameObject.GetComponent<Enemy>().EnemySo.collisionDamage);
             
-            Destroy(other.gameObject);
-            //later change to object pooling
+            other.gameObject.SetActive(false);
+            
+            Debug.Log("Planet health is now " + health);
         }
 
         
@@ -47,4 +48,6 @@ public class PlanetScript : MonoBehaviour
             //trigger game over 
         }
     }
+    
+    
 }

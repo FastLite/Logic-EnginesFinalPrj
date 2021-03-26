@@ -11,5 +11,5 @@ public class EnemySO : ScriptableObject
     public int collisionDamage;
     public int bulletDamage;
     public float speed;
-    
+    public float stopDistance;
 }
