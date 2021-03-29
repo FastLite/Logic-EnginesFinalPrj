@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectPooling : MonoBehaviour
@@ -23,6 +22,10 @@ public class ObjectPooling : MonoBehaviour
     public GameObject enemyMelee;
 
 
+    public List<GameObject> allTurret1 = new List<GameObject>();
+    public GameObject turret1;
+
+
     public int eachObjectToCreate = 3;
 
     public List<string> objectsToInitialize;
@@ -30,10 +33,7 @@ public class ObjectPooling : MonoBehaviour
     private void Awake()
     {
         instance = this;
-    }
-    
-    private void Start()
-    {
+        
         foreach (var VARIABLE in objectsToInitialize)
         {
             for (int i = 0; i < eachObjectToCreate ; i++)
@@ -41,11 +41,9 @@ public class ObjectPooling : MonoBehaviour
                 CreatePoolingObject(VARIABLE);
             }
         }
-        
-        
-            
-        
     }
+    
+    
 
     public void CreatePoolingObject(string objectToCreate)
     {
@@ -73,6 +71,10 @@ public class ObjectPooling : MonoBehaviour
                 go = Instantiate(enemyMelee);
                 allEnemyMelee.Add(go);
                 break;
+            case "turret1":
+                go = Instantiate(turret1);
+                allTurret1.Add(go);
+                break;
             default:
                 Debug.Log("There is no such object you want to create. Check your spelling or redact [ObjectPooling] script ");
                 return;
@@ -82,6 +84,8 @@ public class ObjectPooling : MonoBehaviour
         
     }
 
+    
+    // 1-bullets, 2-turret bullets, 3-artillery enemy, 4-range enemy, 5-melee enemy
     public GameObject GetObject(int caseNumber)
     {
 
@@ -155,12 +159,29 @@ public class ObjectPooling : MonoBehaviour
                 {
 
                     return t;
+                    
+                    
                 }
             }
-            Debug.Log("Я зашел в инстанциацию");
+            GameObject go = Instantiate(enemyMelee);
+            go.SetActive(false);
+            allEnemyMelee.Add(go);
+            return go;
+        }
+        else if (caseNumber == 6)
+        {
+            foreach (var t in allTurret1)
+            {
+                if (!t.activeInHierarchy)
+                {
 
-
-            return null;
+                    return t;
+                }
+            }
+            GameObject go = Instantiate(turret1);
+            go.SetActive(false);
+            allTurret1.Add(go);
+            return go;
         }
         else
         {

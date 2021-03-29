@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
@@ -17,7 +14,7 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         //Move enemy towords the point on the pre determined speed 
-        transform.position = Vector3.MoveTowards(gameObject.transform.position, new Vector3(0, 0), EnemySo.speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(gameObject.transform.position, new Vector3(0-EnemySo.stopDistance, 0-EnemySo.stopDistance), EnemySo.speed * Time.deltaTime);
     }
 
     public void ChangeHealth(float changeValue)
@@ -31,6 +28,7 @@ public class Enemy : MonoBehaviour
         if (health<=0)
         {
             gameObject.SetActive(false);
+            GameManager.instance.score += EnemySo.score;
             Debug.Log("enemy is dead");
         }
         Debug.Log("Enemy health is " + health);

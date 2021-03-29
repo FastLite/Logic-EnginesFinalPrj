@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Enemy", menuName = "Scriptable_Objects/Enemy", order = 1)]
 
-[System.Serializable]
+[Serializable]
 public class EnemySO : ScriptableObject
 {
     public int maxHealth;
@@ -12,4 +11,5 @@ public class EnemySO : ScriptableObject
     public int bulletDamage;
     public float speed;
     public float stopDistance;
+    public int score;
 }

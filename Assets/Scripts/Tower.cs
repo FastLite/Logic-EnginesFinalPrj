@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
@@ -27,10 +25,11 @@ public class Tower : MonoBehaviour
             foreach (var enemy in enemiesInside)
             {
                 float distance = Vector3.Distance(enemy.transform.position, transform.position);
-                if (distance<currentTargetDistance)
+                if (distance<currentTargetDistance && currentTarget!=null)
                 {
                     currentTarget = enemy;
                 }
+                
 
             }
             
