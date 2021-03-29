@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlanetScript : MonoBehaviour
@@ -12,6 +13,9 @@ public class PlanetScript : MonoBehaviour
 
     public GameObject gameOverCanvas;
 
+    public TextMeshProUGUI score;
+    public TextMeshProUGUI earnedCurrency;
+    
 
     private void Start()
     {

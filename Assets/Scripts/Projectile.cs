@@ -8,23 +8,9 @@ public class Projectile : MonoBehaviour
 {
     public float moveSpeed = 20;
     public float damage = 20;
-
-    public static void CreateProjectile(Vector3 spawnPos, Vector3 targetPos, float _damage)
-    {
-        Transform projectileTransform =  Instantiate(ObjectPooling.instance.projectile1, spawnPos, quaternion.identity).transform;
-
-        Projectile projectile = projectileTransform.GetComponent<Projectile>();
-        projectile.Setup(targetPos);
-        projectile.SetProjectileDamage(_damage);
-
-    }
-
-    private Vector3 targetPosition;
-
-    private void Setup(Vector3 targetPos)
-    { 
-        targetPosition = targetPos;
-    }
+    
+    public GameObject target;
+    
 
     public void SetProjectileDamage(float newDamage)
     {
@@ -34,7 +20,11 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
-        Vector3 moveDir = (targetPosition - transform.position).normalized;
+        if (!target.activeInHierarchy)
+        {
+            gameObject.SetActive(false);
+        }
+        Vector3 moveDir = (target.transform.position - transform.position).normalized;
 
         transform.position += moveDir * (moveSpeed * Time.deltaTime);
 
@@ -49,9 +39,6 @@ public class Projectile : MonoBehaviour
         
         transform.eulerAngles = new Vector3(0,0,angle);
 
-        if (Vector3.Distance(transform.position,targetPosition)< 1) //replace this code with collision check on enemy
-        {
-            gameObject.SetActive(false);
-        }
+        
     }
 }

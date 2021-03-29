@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    public Vector3 projectileShootFromPos;
     public GameObject currentTarget;
 
     public float lastFire;
@@ -18,7 +17,12 @@ public class Tower : MonoBehaviour
     private void Update()
     {
         if (enemiesInside.Count != 0)
-        { 
+        {
+            if (enemiesInside.Count ==1)
+            {
+                currentTarget = enemiesInside[0];
+            }
+            
             float currentTargetDistance = Vector3.Distance(currentTarget.transform.position, transform.position);
             foreach (var enemy in enemiesInside)
             {
@@ -31,9 +35,15 @@ public class Tower : MonoBehaviour
             }
             
             
+            
             if (lastFire + turretFireDelay <= Time.time)
             {
-                Projectile.CreateProjectile(transform.position, currentTarget.transform.position, towerDamage);
+                
+                GameObject newBullet = ObjectPooling.instance.GetObject(2);
+                newBullet.transform.position = gameObject.transform.position;
+                newBullet.gameObject.SetActive(true);
+                newBullet.gameObject.GetComponent<Projectile>().SetProjectileDamage(towerDamage);
+                newBullet.gameObject.GetComponent<Projectile>().target = currentTarget;
                 lastFire = Time.time;
 
 
@@ -41,6 +51,11 @@ public class Tower : MonoBehaviour
 
             
         }
+        else if (currentTarget!=null)
+        {
+            currentTarget = null;
+        }
+        
     }
 
 
@@ -49,7 +64,6 @@ public class Tower : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             enemiesInside.Add(other.gameObject);
-            Debug.Log("Enemy is inside the trigger");
         }
 
         if (currentTarget ==null)

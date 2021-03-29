@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5788157686581698183}
   - component: {fileID: 5788157686581698176}
-  - component: {fileID: 5788157686581698177}
   - component: {fileID: 5788157686581698178}
   - component: {fileID: 5788157686581698182}
   m_Layer: 0
@@ -73,8 +72,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.18841672, g: 1, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 88a6443bcb69fa34ba8f809b2e08d2ae, type: 3}
+  m_Color: {r: 0.6479964, g: 0.9716981, b: 0.5729352, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -84,19 +83,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5788157686581698177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5788157686581698179}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba014c278de51f945a475789e6485408, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
 --- !u!114 &5788157686581698178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a55c02df43997fb439f469541be4d142, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemySo: {fileID: 11400000, guid: 8a3c908135012f6408f9549a4f7a74a6, type: 2}
+  EnemySo: {fileID: 11400000, guid: 0ebfadc7fedfd064bb68cad2fd26dce5, type: 2}
   health: 1
 --- !u!61 &5788157686581698182
 BoxCollider2D:
@@ -126,9 +112,9 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 3.98, y: 5.01}
     newSize: {x: 1, y: 0.94756806}
     adaptiveTilingThreshold: 0.5
     drawMode: 1

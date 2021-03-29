@@ -9,6 +9,10 @@ public class Enemy : MonoBehaviour
     public EnemySO EnemySo;
     public float health = 1;
 
+    private void Awake()
+    {
+        health = EnemySo.maxHealth;
+    }
 
     private void Update()
     {
@@ -37,7 +41,9 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.CompareTag("Projectile"))
         {    
             ChangeHealth(-other.gameObject.GetComponent<Projectile>().damage);
-            Debug.Log("да я тут");
+            Debug.Log("я в уроне");
             other.gameObject.SetActive(false);
-        }    }
+            
+        }    
+    }
 }

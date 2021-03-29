@@ -6,28 +6,27 @@ public class ObjectPooling : MonoBehaviour
 {
     public static ObjectPooling instance;
 
-    public GameObject bullet;
+
     public List<GameObject> allCreatedBullets = new List<GameObject>();
-
-    public GameObject bulletTurret;
+    public GameObject bullet;
+    
     public List<GameObject> allCreatedTurretBullets = new List<GameObject>();
-
-    public GameObject enemyArtillery;
+    public GameObject bulletTurret;
+    
     public List<GameObject> allEnemyArtillery = new List<GameObject>();
+    public GameObject enemyArtillery;
 
-    public GameObject enemyRange;
     public List<GameObject> allEnemyRange = new List<GameObject>();
+    public GameObject enemyRange;
 
-    public GameObject enemyMelee;
     public List<GameObject> allEnemyMelee = new List<GameObject>();
+    public GameObject enemyMelee;
+
 
     public int eachObjectToCreate = 3;
 
     public List<string> objectsToInitialize;
     
-    
-    public GameObject projectile1;
-
     private void Awake()
     {
         instance = this;
@@ -60,19 +59,19 @@ public class ObjectPooling : MonoBehaviour
                 break;
             case "bulletTurret":
                 go = Instantiate(bulletTurret);
-                allCreatedBullets.Add(go);
+                allCreatedTurretBullets.Add(go);
                 break;
             case "enemyArtillery":
                 go = Instantiate(enemyArtillery);
-                allCreatedBullets.Add(go);
+                allEnemyArtillery.Add(go);
                 break;
             case "enemyRange":
                 go = Instantiate(enemyRange);
-                allCreatedBullets.Add(go);
+                allEnemyRange.Add(go);
                 break;
             case "enemyMelee":
                 go = Instantiate(enemyMelee);
-                allCreatedBullets.Add(go);
+                allEnemyMelee.Add(go);
                 break;
             default:
                 Debug.Log("There is no such object you want to create. Check your spelling or redact [ObjectPooling] script ");
@@ -83,63 +82,95 @@ public class ObjectPooling : MonoBehaviour
         
     }
 
-    public GameObject GetObject(string objectToCreate)
+    public GameObject GetObject(int caseNumber)
     {
-        
-        
-        switch (objectToCreate)
+
+
+        if (caseNumber == 1)
         {
-            case "bullet":
-                foreach (var t in allCreatedBullets)
+            foreach (var t in allCreatedBullets)
+            {
+                if (!t.activeInHierarchy)
                 {
-                    if (t.activeInHierarchy)
-                    {
-                        return t;
-                    }
+                    return t;
                 }
-                break;
-            case "bulletTurret":
-                foreach (var t in allCreatedBullets)
+            }
+
+            GameObject go = Instantiate(bullet);
+            go.SetActive(false);
+            allCreatedBullets.Add(go);
+            return go;
+        }
+        else if (caseNumber == 2)
+        {
+            foreach (var t in allCreatedTurretBullets)
+            {
+                if (!t.activeInHierarchy)
                 {
-                    if (t.activeInHierarchy)
-                    {
-                        return t;
-                    }
+                    return t;
                 }
-                break;
-            case "enemyArtillery":
-                foreach (var t in allCreatedBullets)
+            }
+
+            GameObject go = Instantiate(bulletTurret);
+            go.SetActive(false);
+            allCreatedTurretBullets.Add(go);
+            return go;
+           
+        }
+        else if (caseNumber == 3)
+        {
+            foreach (var t in allEnemyArtillery)
+            {
+                if (!t.activeInHierarchy)
                 {
-                    if (t.activeInHierarchy)
-                    {
-                        return t;
-                    }
+                    return t;
                 }
-                break;
-            case "enemyRange":
-                foreach (var t in allCreatedBullets)
+            }
+
+            GameObject go = Instantiate(enemyArtillery);
+            go.SetActive(false);
+            allEnemyArtillery.Add(go);
+            return go;
+        }
+        else if (caseNumber == 4)
+        {
+            foreach (var t in allEnemyRange)
+            {
+                if (!t.activeInHierarchy)
                 {
-                    if (t.activeInHierarchy)
-                    {
-                        return t;
-                    }
+                    return t;
                 }
-                break;
-            case "enemyMelee":
-                foreach (var t in allEnemyMelee)
+            }
+
+            GameObject go = Instantiate(enemyRange);
+            go.SetActive(false);
+            allEnemyRange.Add(go);
+            return go;
+        }
+        else if (caseNumber == 5)
+        {
+            foreach (var t in allEnemyMelee)
+            {
+                if (!t.activeInHierarchy)
                 {
-                    if (t.activeInHierarchy)
-                    {
-                        return t;
-                    }
+
+                    return t;
                 }
-                break;
+            }
+            Debug.Log("Я зашел в инстанциацию");
+
+
+            return null;
+        }
+        else
+        {
+            Debug.Log("There is no such object in the pool");
+            return null;
             
         }
-
-        GameObject go = Instantiate(bullet);
-        go.SetActive(false);
-        allCreatedBullets.Add(go);
-        return go;
     }
+
+
+
+
 }
