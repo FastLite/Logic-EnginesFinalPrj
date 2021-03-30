@@ -25,7 +25,7 @@ public class PlanetScript : MonoBehaviour
     private void Start()
     {
         gameOverCanvas.SetActive(false);
-        Time.timeScale = 1;
+        //Time.timeScale = 1;
         health = maxHealth;
     }
 

@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.CompareTag("Projectile"))
         {    
             ChangeHealth(-other.gameObject.GetComponent<Projectile>().damage);
-            Debug.Log("я в уроне");
+            //Debug.Log("я в уроне");
             other.gameObject.SetActive(false);
             
         }    
