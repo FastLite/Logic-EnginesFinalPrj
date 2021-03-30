@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 5788157686581698183}
   - component: {fileID: 5788157686581698176}
   - component: {fileID: 5788157686581698178}
+  - component: {fileID: -5806679183190664504}
   - component: {fileID: 5788157686581698182}
   m_Layer: 0
   m_Name: enemyrange
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 1, y: 0.94756806}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -95,8 +96,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a55c02df43997fb439f469541be4d142, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemySo: {fileID: 11400000, guid: 8a3c908135012f6408f9549a4f7a74a6, type: 2}
-  health: 1
+  EnemySo: {fileID: 11400000, guid: 42c2631c59905014c965812c89e60ec8, type: 2}
+  health: 50
+--- !u!50 &-5806679183190664504
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5788157686581698179}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &5788157686581698182
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -115,7 +137,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 19.29, y: 18.23}
-    newSize: {x: 1, y: 0.94756806}
+    newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 1
     adaptiveTiling: 0

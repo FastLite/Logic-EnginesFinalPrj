@@ -17,11 +17,15 @@ public class PlanetScript : MonoBehaviour
     public UnityEvent endPauseGame;
 
     public TextMeshProUGUI earnedCurrency;
-    
+
+    public AudioSource musicSource;
+    //public AudioSource sfxSource;
+    public AudioClip uLoseMusic;
 
     private void Start()
     {
         gameOverCanvas.SetActive(false);
+        Time.timeScale = 1;
         health = maxHealth;
     }
 
@@ -45,9 +49,7 @@ public class PlanetScript : MonoBehaviour
             other.gameObject.SetActive(false);
             
             Debug.Log("Planet health is now " + health);
-        }
-
-        
+        }        
     }
 
     public void ChangeHealth(int changeValue)
@@ -62,6 +64,10 @@ public class PlanetScript : MonoBehaviour
         {
             gameOverCanvas.SetActive(true);
             endPauseGame.Invoke();
+            Time.timeScale = 0;
+
+            musicSource.clip = uLoseMusic;
+            musicSource.Play();
 
             //trigger game over 
         }
@@ -73,8 +79,5 @@ public class PlanetScript : MonoBehaviour
         turret.SetActive(true);
         money -= 20;
         return turret;
-
     }
-
-
 }
