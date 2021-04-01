@@ -35,9 +35,17 @@ public class PlanetScript : MonoBehaviour
         {
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Transform newTower =  createTower("1").transform;
-            newTower.transform.position = new Vector3(worldPosition.x,worldPosition.y,0);
-            
-        }   
+            newTower.transform.position = new Vector3(worldPosition.x,worldPosition.y,0);            
+        }
+        if (Input.touchCount > 0)
+        {
+            //first touch detected
+            Touch myTouch = Input.GetTouch(0);
+
+            //move ui object to touch position
+            Transform newTower = createTower("1").transform;
+            newTower.transform.position = myTouch.position;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
