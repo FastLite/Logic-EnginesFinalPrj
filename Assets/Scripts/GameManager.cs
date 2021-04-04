@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
@@ -6,38 +7,42 @@ public class GameManager : MonoBehaviour
 
     public int score;
     public int waveNumber;
-    
+    public int hardCurrency;
 
-    
-    void Awake()
+
+    private void Awake()
     {
-        score = 0;
-        
-        if (instance !=null & instance !=this)
-        {
-            Destroy(gameObject);
-        }
+        hardCurrency = PlayerPrefs.GetInt("hard");
+
+        if ((instance != null) & (instance != this)) Destroy(gameObject);
 
         instance = this;
-        
-        
+
+
         DontDestroyOnLoad(gameObject);
     }
+
     
 
-    // Update is called once per frame
-    void Update()
+
+    private void Update()
     {
-        
     }
-    
 
-    public void IncreaseScore(int changeValue)
+
+    public void ChangeHardCurrency(int changeValue)
     {
-        //change score any time enemy destroyed or wave survived
-        
+        hardCurrency += changeValue;
+        PlayerPrefs.SetInt("hard",hardCurrency);
+    }
+    public void ChangeScore(int changeValue)
+    {
         score += changeValue;
         
+    }
+
+    public void Reset()
+    {
         
     }
 }

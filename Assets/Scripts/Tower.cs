@@ -76,7 +76,6 @@ public class Tower : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             enemiesInside.Remove(other.gameObject);
-            Debug.Log("Enemy is exited the trigger");
         }    
     }
 }
