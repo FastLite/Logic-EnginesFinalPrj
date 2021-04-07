@@ -14,8 +14,8 @@ public class PlanetScript : MonoBehaviour
     public GameObject gameOverCanvas;
     public UnityEvent endPauseGame;
 
-    public TextMeshProUGUI earnedCurrency;
-    public TextMeshProUGUI finalScore;
+   // public TextMeshProUGUI earnedCurrency;
+   // public TextMeshProUGUI finalScore;
 
     public AudioSource musicSource;
 
@@ -61,13 +61,20 @@ public class PlanetScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("EnemyBullet") || other.gameObject.CompareTag("Enemy"))
+        if ( other.gameObject.CompareTag("Enemy"))
         {
             ChangeHealth(-other.gameObject.GetComponent<Enemy>().EnemySo.collisionDamage);
 
             other.gameObject.SetActive(false);
-
         }
+
+        if (other.gameObject.CompareTag("EnemyBullet") )
+        {
+            ChangeHealth(-other.gameObject.GetComponent<EnemyBullet>().damage);
+            Debug.Log("Я в скрипте");
+            other.gameObject.SetActive(false);
+        }
+        
     }
 
     public void ChangeHealth(int changeValue)
@@ -79,7 +86,7 @@ public class PlanetScript : MonoBehaviour
         {    //trigger game over 
             score = GameManager.instance.score;
             GameManager.instance.ChangeHardCurrency(Mathf.RoundToInt(score / 100));
-            finalScore.text = "Your final score is: "+ score;
+          //  finalScore.text = "Your final score is: "+ score;
             gameOverCanvas.SetActive(true);
             endPauseGame.Invoke();
             Time.timeScale = 0;
@@ -110,11 +117,7 @@ public class PlanetScript : MonoBehaviour
     {
         int n = Mathf.RoundToInt((float)amount);
         money += n;
-        earnedCurrency.text = money.ToString();
+       // earnedCurrency.text = money.ToString();
     }
-    public void ChangeScore(int amount)
-    {
-        
-        score += amount;
-    }
+    
 }

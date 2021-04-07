@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 5788157686581698178}
   - component: {fileID: -5806679183190664504}
   - component: {fileID: 5788157686581698182}
+  - component: {fileID: 8885824733844210884}
+  - component: {fileID: 6180720910024323427}
   m_Layer: 0
   m_Name: enemyrange
   m_TagString: Enemy
@@ -145,3 +147,34 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
+--- !u!114 &8885824733844210884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5788157686581698179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b10bc7e06e0bd2c46ad7cd8e5f2d5442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: {fileID: 11400000, guid: 42c2631c59905014c965812c89e60ec8, type: 2}
+  delay: 1
+  lastFire: 0
+--- !u!58 &6180720910024323427
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5788157686581698179}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 3

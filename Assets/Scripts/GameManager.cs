@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     }
     public void ChangeScore(int changeValue)
     {
-        score += changeValue;
+        score += changeValue/10;
         
     }
 

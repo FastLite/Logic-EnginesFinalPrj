@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public int numberOfTestEnemies = 6;
+    public int baseEnemiesNumber = 6;
     public int timeBetweenWave;
+    public int killedEnemies;
 
     public TextMeshProUGUI timeUntilNextWaveTMP;
 
@@ -27,28 +29,14 @@ public class EnemySpawner : MonoBehaviour
 
         nextWaveTime = timeBetweenWave;
         planet = FindObjectOfType<PlanetScript>();
+
+        StartCoroutine("LaunchWave");
     }
 
     private void Update()
     {
         timeUntilNextWaveTMP.text = Mathf.RoundToInt(nextWaveTime - Time.time).ToString();
-        for (var i = 0; i < 4; i++)
-            if (nextWaveTime < Time.time) //revork into Ienumerator
-            {
-                GameManager.instance.waveNumber += 1;
-                double a = 40 * GameManager.instance.waveNumber * 1.2;
-                planet.ChangeMoneyAmount(a);
-                SpawnWave(numberOfTestEnemies, sides[m]);
-                nextWaveTime += timeBetweenWave;
-                m++;
-                
-                if (m == 3)
-                {
-                    m = 0;
-                    i = 0;  
-                }
-               
-            }
+       
     }
 
 
@@ -65,30 +53,52 @@ public class EnemySpawner : MonoBehaviour
         GameManager.instance.waveNumber++;
         Debug.Log(caseName);
         numberOfEnemies = numberOfEnemies * (1.5 * GameManager.instance.waveNumber);
+        m = 0;
         switch (caseName)
         {
             case "RightSide":
-                for (var i = 0; i < numberOfEnemies; i++) SpawnEnemiesAtSide(rightSideCollider);
+                for (var i = 0; i < numberOfEnemies/ 2 * 1.5; i++)
+                {
+                    SpawnEnemiesAtSide(rightSideCollider,3);
+                }
+                for (var i = 0; i < numberOfEnemies/2; i++)
+                {
+                    SpawnEnemiesAtSide(rightSideCollider,4);
+                }
                 break;
             case "LeftSide":
+                for (var i = 0; i < numberOfEnemies/ 2 * 1.5; i++)
+                {
+                    SpawnEnemiesAtSide(leftSideCollider,3);
+                }
                 for (var i = 0; i < numberOfEnemies; i++)
                 {
-                    SpawnEnemiesAtSide(leftSideCollider);
+                    SpawnEnemiesAtSide(leftSideCollider,4);
                 }
 
                 break;
             case "BothSides":
-                for (var i = 0; i < numberOfEnemies / 2; i++)
+                for (var i = 0; i < numberOfEnemies / 2 * 1.5/2; i++)
                 {
-                    SpawnEnemiesAtSide(rightSideCollider);
-                    SpawnEnemiesAtSide(leftSideCollider);
+                    SpawnEnemiesAtSide(rightSideCollider,3);
+                    SpawnEnemiesAtSide(leftSideCollider,3);
+                }
+                for (var i = 0; i < numberOfEnemies / 4/2; i++)
+                {
+                    SpawnEnemiesAtSide(rightSideCollider,4);
+                    SpawnEnemiesAtSide(leftSideCollider,4);
+                }
+                for (var i = 0; i < Mathf.RoundToInt((float)numberOfEnemies / 10); i++)
+                {
+                    SpawnEnemiesAtSide(rightSideCollider,5);
+                    SpawnEnemiesAtSide(leftSideCollider,5);
                 }
 
                 break;
         }
     }
 
-    public void SpawnEnemiesAtSide(Collider2D side)
+    public void SpawnEnemiesAtSide(Collider2D side, int type)
     {
         {
             var rndPoint3D = RandomPointInBounds(side.bounds, 1f);
@@ -98,11 +108,29 @@ public class EnemySpawner : MonoBehaviour
             {
                 var rot = Quaternion.FromToRotation(Vector3.forward, new Vector3(0, 0, 0));
 
-                var pool = ObjectPooling.instance.GetObject(5);
+                
+                var pool = ObjectPooling.instance.GetObject(type);
                 pool.SetActive(true);
                 pool.transform.rotation = rot;
                 pool.transform.position = rndPoint2D;
+                
+                
             }
         }
+    }
+    IEnumerator LaunchWave()
+    {
+        yield return new WaitForSeconds(timeBetweenWave);
+            GameManager.instance.waveNumber += 1;
+            double a = 40 * GameManager.instance.waveNumber * 1.2;
+            planet.ChangeMoneyAmount(a);
+            GameManager.instance.ChangeScore(Mathf.RoundToInt((float)a));
+            SpawnWave(baseEnemiesNumber, sides[m]);
+            nextWaveTime += timeBetweenWave;
+            m++;
+
+            if (m == 3)
+                m = 0;
+            LaunchWave();
     }
 }

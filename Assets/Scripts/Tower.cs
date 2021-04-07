@@ -44,8 +44,8 @@ public class Tower : MonoBehaviour
                 newBullet.gameObject.GetComponent<Projectile>().SetProjectileDamage(towerDamage);
                 newBullet.gameObject.GetComponent<Projectile>().target = currentTarget;
                 lastFire = Time.time;
-
-
+                Quaternion rotation = Quaternion.LookRotation (currentTarget.transform.position - transform.position, transform.TransformDirection(Vector3.up));
+                transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
             }
 
             

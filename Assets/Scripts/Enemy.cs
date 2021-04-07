@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
@@ -39,4 +40,11 @@ public class Enemy : MonoBehaviour
         }
 
     }
+
+    private void OnEnable()
+    {
+        Quaternion rotation = Quaternion.LookRotation (new Vector3(0,0,0) - transform.position, transform.TransformDirection(Vector3.up));
+        transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
+    }
+    
 }

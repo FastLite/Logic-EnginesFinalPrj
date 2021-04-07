@@ -107,7 +107,7 @@ public class ObjectPooling : MonoBehaviour
             return go;
         }
 
-        if (caseNumber == 3)
+        if (caseNumber == 5)
         {
             foreach (var t in allEnemyArtillery)
                 if (!t.activeInHierarchy)
@@ -131,7 +131,7 @@ public class ObjectPooling : MonoBehaviour
             return go;
         }
 
-        if (caseNumber == 5)
+        if (caseNumber == 3)
         {
             foreach (var t in allEnemyMelee)
                 if (!t.activeInHierarchy)
