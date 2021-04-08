@@ -53,11 +53,10 @@ public class EnemySpawner : MonoBehaviour
         GameManager.instance.waveNumber++;
         Debug.Log(caseName);
         numberOfEnemies = numberOfEnemies * (1.5 * GameManager.instance.waveNumber);
-        m = 0;
         switch (caseName)
         {
             case "RightSide":
-                for (var i = 0; i < numberOfEnemies/ 2 * 1.5; i++)
+                for (var i = 0; i < numberOfEnemies/ 2; i++)
                 {
                     SpawnEnemiesAtSide(rightSideCollider,3);
                 }
@@ -67,18 +66,18 @@ public class EnemySpawner : MonoBehaviour
                 }
                 break;
             case "LeftSide":
-                for (var i = 0; i < numberOfEnemies/ 2 * 1.5; i++)
+                for (var i = 0; i < numberOfEnemies/ 2 ; i++)
                 {
                     SpawnEnemiesAtSide(leftSideCollider,3);
                 }
-                for (var i = 0; i < numberOfEnemies; i++)
+                for (var i = 0; i < numberOfEnemies/2; i++)
                 {
                     SpawnEnemiesAtSide(leftSideCollider,4);
                 }
 
                 break;
             case "BothSides":
-                for (var i = 0; i < numberOfEnemies / 2 * 1.5/2; i++)
+                for (var i = 0; i < numberOfEnemies / 2/2; i++)
                 {
                     SpawnEnemiesAtSide(rightSideCollider,3);
                     SpawnEnemiesAtSide(leftSideCollider,3);
@@ -118,7 +117,8 @@ public class EnemySpawner : MonoBehaviour
             }
         }
     }
-    IEnumerator LaunchWave()
+
+    private IEnumerator LaunchWave()
     {
         yield return new WaitForSeconds(timeBetweenWave);
             GameManager.instance.waveNumber += 1;
@@ -131,6 +131,7 @@ public class EnemySpawner : MonoBehaviour
 
             if (m == 3)
                 m = 0;
-            LaunchWave();
+            StartCoroutine("LaunchWave");
+            
     }
 }
