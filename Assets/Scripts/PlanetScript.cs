@@ -10,6 +10,8 @@ public class PlanetScript : MonoBehaviour
     public int score;
     public int money;
 
+    public PlanetHealthBar healthBar;
+
     //public int armor;
 
     public GameObject gameOverCanvas;
@@ -29,6 +31,8 @@ public class PlanetScript : MonoBehaviour
         gameOverCanvas.SetActive(false);
         health = maxHealth;
         score = 0;
+
+        healthBar.SetMaxHelath(maxHealth);
     }
 
     private void Update()
@@ -86,6 +90,8 @@ public class PlanetScript : MonoBehaviour
         //Change health value based on the parameter stated in the enemy or bullet (not decided yet)
         health += changeValue;
         if (health > maxHealth) health = maxHealth;
+        healthBar.SetHealth(health);
+
         if (health <= 0)
         {    //trigger game over 
             score = GameManager.instance.score;
@@ -128,7 +134,7 @@ public class PlanetScript : MonoBehaviour
     {
         maxHealth = newMaxHealth;
         health = maxHealth;
-
+        healthBar.SetHealth(maxHealth);
     }
     
 }
