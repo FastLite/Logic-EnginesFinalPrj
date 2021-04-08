@@ -17,7 +17,7 @@ public class PlanetScript : MonoBehaviour
     public GameObject gameOverCanvas;
     public UnityEvent endPauseGame;
 
-   // public TextMeshProUGUI earnedCurrency;
+    public TextMeshProUGUI earnedCurrency;
    // public TextMeshProUGUI finalScore;
 
     public AudioSource musicSource;
@@ -96,7 +96,6 @@ public class PlanetScript : MonoBehaviour
         {    //trigger game over 
             score = GameManager.instance.score;
             GameManager.instance.ChangeHardCurrency(Mathf.RoundToInt(score / 100));
-          //  finalScore.text = "Your final score is: "+ score;
             gameOverCanvas.SetActive(true);
             endPauseGame.Invoke();
             Time.timeScale = 0;
@@ -127,7 +126,7 @@ public class PlanetScript : MonoBehaviour
     {
         int n = Mathf.RoundToInt((float)amount);
         money += n;
-       // earnedCurrency.text = money.ToString();
+        earnedCurrency.text = "Resources: " + money;
     }
 
     public void IncreaseMaxHeath(int newMaxHealth)

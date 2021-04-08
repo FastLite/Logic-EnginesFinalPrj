@@ -35,7 +35,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        timeUntilNextWaveTMP.text = Mathf.RoundToInt(nextWaveTime - Time.time).ToString();
+        timeUntilNextWaveTMP.text = "Next wave in: "+Mathf.RoundToInt(nextWaveTime - Time.time)+" seconds";
        
     }
 

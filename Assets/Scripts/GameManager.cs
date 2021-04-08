@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,8 +17,9 @@ public class GameManager : MonoBehaviour
     public static int SpaceCoinCount = 00;
     public int InternalCoin;
 
-    public GameObject SpaceCoinDisplay;
-    public GameObject ScoreDisplay;
+    public TextMeshProUGUI hardCurrencyInGame;
+    public TextMeshProUGUI ScoreDisplay;
+    public TextMeshProUGUI hardCurrencyFinal;
 
     public GameObject SpendButtonE1;
     public GameObject SpendButtonE2;
@@ -50,9 +52,9 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         InternalCoin = SpaceCoinCount;
-        SpaceCoinDisplay.GetComponent<Text>().text = "" + InternalCoin;
+        hardCurrencyInGame.text = "You have " + hardCurrency + " space coins";
 
-        ScoreDisplay.GetComponent<Text>().text = "" + score;
+        ScoreDisplay.text = "Your score is: " + score;
     }
 
     public void Spend10()
@@ -298,6 +300,7 @@ public class GameManager : MonoBehaviour
     {
         hardCurrency += changeValue;
         PlayerPrefs.SetInt("hard",hardCurrency);
+        hardCurrencyFinal.text = "Now you have " + hardCurrency + " space coins";
     }
     public void ChangeScore(int changeValue)
     {

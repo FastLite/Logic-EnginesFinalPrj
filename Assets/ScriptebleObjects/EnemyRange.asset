@@ -17,4 +17,4 @@ MonoBehaviour:
   bulletDamage: 10
   speed: 2
   stopDistance: 0
-  score: 10
+  score: 2
