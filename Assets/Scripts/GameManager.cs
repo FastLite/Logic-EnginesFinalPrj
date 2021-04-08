@@ -303,9 +303,4 @@ public class GameManager : MonoBehaviour
     {
         score += changeValue/10;        
     }
-
-    public void Reset()
-    {
-        
-    }
 }

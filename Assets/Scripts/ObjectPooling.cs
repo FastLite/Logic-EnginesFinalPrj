@@ -157,4 +157,12 @@ public class ObjectPooling : MonoBehaviour
         Debug.LogError("There is no such object in the pool");
         return null;
     }
+
+    public void ChangeTowerDamage(int damage)
+    {
+        foreach (var tower in allTurret1)
+        {
+            tower.GetComponent<Tower>().towerDamage = damage;
+        }
+    }
 }

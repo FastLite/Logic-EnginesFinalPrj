@@ -19,7 +19,6 @@ public class SceneLoader : MonoBehaviour
     {
         // It will load any scene in the build settings
         SceneManager.LoadScene(sceneNum);
-        GameManager.instance.Reset();
     }
 
     public void QuitGame()

@@ -123,5 +123,12 @@ public class PlanetScript : MonoBehaviour
         money += n;
        // earnedCurrency.text = money.ToString();
     }
+
+    public void IncreaseMaxHeath(int newMaxHealth)
+    {
+        maxHealth = newMaxHealth;
+        health = maxHealth;
+
+    }
     
 }
