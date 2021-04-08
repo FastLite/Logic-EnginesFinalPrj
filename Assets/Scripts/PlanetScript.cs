@@ -1,6 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class PlanetScript : MonoBehaviour
 {
@@ -33,8 +34,9 @@ public class PlanetScript : MonoBehaviour
     private void Update()
     {
         
-        
-        #if UNITY_EDITOR
+        if ( ! EventSystem.current.IsPointerOverGameObject())
+        {
+#if UNITY_EDITOR
             if (Input.GetMouseButtonDown(0))
             {
                 var worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -45,18 +47,20 @@ public class PlanetScript : MonoBehaviour
                 }
                 newTower.transform.position = new Vector3(worldPosition.x, worldPosition.y, 0);
             }
-        #endif
-        if (Input.touchCount > 0)
-        {
-            var myTouch = Input.GetTouch(0);
-
-            var newTower = createTower("1",20).transform;
-            if (newTower == null)
+#endif
+            if (Input.touchCount > 0)
             {
-                return;
+                var myTouch = Input.GetTouch(0);
+
+                var newTower = createTower("1",20).transform;
+                if (newTower == null)
+                {
+                    return;
+                }
+                newTower.transform.position = myTouch.position;
             }
-            newTower.transform.position = myTouch.position;
         }
+       
     }
 
     private void OnCollisionEnter2D(Collision2D other)
