@@ -13,10 +13,11 @@ public class GameManager : MonoBehaviour
 
     //---
 
-    public static int SpaceCoinCount = 50;
+    public static int SpaceCoinCount = 00;
     public int InternalCoin;
 
     public GameObject SpaceCoinDisplay;
+    public GameObject ScoreDisplay;
 
     public GameObject SpendButtonE1;
     public GameObject SpendButtonE2;
@@ -41,7 +42,7 @@ public class GameManager : MonoBehaviour
         instance = this;
 
 
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
     
     //---
@@ -50,13 +51,15 @@ public class GameManager : MonoBehaviour
     {
         InternalCoin = SpaceCoinCount;
         SpaceCoinDisplay.GetComponent<Text>().text = "" + InternalCoin;
+
+        ScoreDisplay.GetComponent<Text>().text = "" + score;
     }
 
     public void Spend10()
     {
         GameManager.SpaceCoinCount -= 10;
 
-        if (GameManager.SpaceCoinCount == 0)
+        if (GameManager.SpaceCoinCount <= 0)
         {
             SpendButtonD1.SetActive(false);
             SpendButtonE1.SetActive(false);
@@ -96,7 +99,7 @@ public class GameManager : MonoBehaviour
     {
         GameManager.SpaceCoinCount -= 20;
 
-        if (GameManager.SpaceCoinCount == 0)
+        if (GameManager.SpaceCoinCount <= 0)
         {
             SpendButtonD1.SetActive(false);
             SpendButtonE1.SetActive(false);
@@ -136,7 +139,7 @@ public class GameManager : MonoBehaviour
     {
         GameManager.SpaceCoinCount -= 30;
 
-        if (GameManager.SpaceCoinCount == 0)
+        if (GameManager.SpaceCoinCount <= 0)
         {
             SpendButtonD1.SetActive(false);
             SpendButtonE1.SetActive(false);
@@ -176,7 +179,7 @@ public class GameManager : MonoBehaviour
     {
         GameManager.SpaceCoinCount -= 40;
 
-        if (GameManager.SpaceCoinCount == 0)
+        if (GameManager.SpaceCoinCount <= 0)
         {
             SpendButtonD1.SetActive(false);
             SpendButtonE1.SetActive(false);
@@ -216,7 +219,7 @@ public class GameManager : MonoBehaviour
     {
         GameManager.SpaceCoinCount -= 50;
 
-        if (GameManager.SpaceCoinCount == 0)
+        if (GameManager.SpaceCoinCount <= 0)
         {
             SpendButtonD1.SetActive(false);
             SpendButtonE1.SetActive(false);
@@ -281,7 +284,12 @@ public class GameManager : MonoBehaviour
 
     public void ShowAdButton()
     {
-        AdButton.SetActive(false);
+        AdButton.SetActive(true);
+        SpendButtonD1.SetActive(false);
+        SpendButtonE1.SetActive(false);
+        SpendButtonD2.SetActive(false);
+        SpendButtonE2.SetActive(false);
+        SpendButtonD3.SetActive(false);
     }
 
     //---

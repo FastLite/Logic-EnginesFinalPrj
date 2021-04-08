@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class Shop_Items : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public enum ItemType
     {
-        
+        Satelite,
+        Earthx2,
+        Spaceship,
+        Earthx4,
+        DeathStar
     }
 
-    // Update is called once per frame
-    void Update()
+    public static int GetCost(ItemType itemType)
     {
-        
+        switch (itemType)
+        {
+            default:
+            case ItemType.Satelite:  return 10;
+            case ItemType.Earthx2:   return 20;
+            case ItemType.Spaceship: return 30;
+            case ItemType.Earthx4:   return 40;
+            case ItemType.DeathStar: return 50;
+        }
     }
 }
