@@ -91,6 +91,8 @@ public class PlanetScript : MonoBehaviour
         health += changeValue;
         if (health > maxHealth) health = maxHealth;
         healthBar.SetHealth(health);
+      
+        
 
         if (health <= 0)
         {    //trigger game over 
