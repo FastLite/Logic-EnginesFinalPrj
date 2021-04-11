@@ -278,7 +278,33 @@ public class GameManager : MonoBehaviour
         {
             SpendButtonE2.SetActive(true);
         }
+        if (GameManager.SpaceCoinCount == 60)
+        {
+            SpendButtonD3.SetActive(true);
+        }
+    }
+
+    public void Buy20()
+    {
+        GameManager.SpaceCoinCount += 20;
+
+        if (GameManager.SpaceCoinCount == 20)
+        {
+            SpendButtonD1.SetActive(true);
+        }
+        if (GameManager.SpaceCoinCount == 40)
+        {
+            SpendButtonE1.SetActive(true);
+        }
+        if (GameManager.SpaceCoinCount == 60)
+        {
+            SpendButtonD2.SetActive(true);
+        }
         if (GameManager.SpaceCoinCount == 50)
+        {
+            SpendButtonE2.SetActive(true);
+        }
+        if (GameManager.SpaceCoinCount == 60)
         {
             SpendButtonD3.SetActive(true);
         }
