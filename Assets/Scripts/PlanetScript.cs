@@ -40,7 +40,7 @@ public class PlanetScript : MonoBehaviour
         
         if ( ! EventSystem.current.IsPointerOverGameObject())
         {
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
             if (Input.GetMouseButtonDown(0))
             {
                 var worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -51,7 +51,7 @@ public class PlanetScript : MonoBehaviour
                 }
                 newTower.transform.position = new Vector3(worldPosition.x, worldPosition.y, 0);
             }
-#endif
+//#endif
             if (Input.touchCount > 0)
             {
                 var myTouch = Input.GetTouch(0);
