@@ -260,6 +260,31 @@ public class Money: MonoBehaviour
             SpendButtonD3.SetActive(true);
         }
     }
+    public void Buy20()
+    {
+        GameManager.SpaceCoinCount += 20;
+
+        if (GameManager.SpaceCoinCount == 10)
+        {
+            SpendButtonD1.SetActive(true);
+        }
+        if (GameManager.SpaceCoinCount == 20)
+        {
+            SpendButtonE1.SetActive(true);
+        }
+        if (GameManager.SpaceCoinCount == 30)
+        {
+            SpendButtonD2.SetActive(true);
+        }
+        if (GameManager.SpaceCoinCount == 40)
+        {
+            SpendButtonE2.SetActive(true);
+        }
+        if (GameManager.SpaceCoinCount == 50)
+        {
+            SpendButtonD3.SetActive(true);
+        }
+    }
 
     public void ShowAdButton()
     {
