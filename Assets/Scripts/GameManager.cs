@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         InternalCoin = SpaceCoinCount;
-        hardCurrencyInGame.text = "WALLLET: " + hardCurrency + " space coins";
+        hardCurrencyInGame.text = "WALLET: " + hardCurrency + " space coins";
 
         ScoreDisplay.text = "Your score is: " + score;
     }
