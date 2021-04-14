@@ -38,7 +38,6 @@ public class Enemy : MonoBehaviour
             gameObject.SetActive(false);
             GameManager.instance.ChangeScore(EnemySo.score); 
         }
-
     }
 
     private void OnEnable()

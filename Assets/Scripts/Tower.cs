@@ -11,12 +11,19 @@ public class Tower : MonoBehaviour
 
     public List<GameObject> enemiesInside;
 
+    public int health;
+    public TowerHealth healthBar;
+
+    private void Awake()
+    {
+        health = 500;
+    }
 
     private void Update()
     {
         if (enemiesInside.Count != 0)
         {
-            if (enemiesInside.Count ==1)
+            if (enemiesInside.Count == 1)
             {
                 currentTarget = enemiesInside[0];
             }
@@ -29,15 +36,10 @@ public class Tower : MonoBehaviour
                 {
                     currentTarget = enemy;
                 }
-                
-
-            }
-            
-            
+            }    
             
             if (lastFire + turretFireDelay <= Time.time)
-            {
-                
+            {                
                 GameObject newBullet = ObjectPooling.instance.GetObject(2);
                 newBullet.transform.position = gameObject.transform.position;
                 newBullet.gameObject.SetActive(true);
@@ -47,14 +49,11 @@ public class Tower : MonoBehaviour
                 Quaternion rotation = Quaternion.LookRotation (currentTarget.transform.position - transform.position, transform.TransformDirection(Vector3.up));
                 transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
             }
-
-            
         }
         else if (currentTarget!=null)
         {
             currentTarget = null;
-        }
-        
+        }        
     }
 
 
@@ -65,7 +64,7 @@ public class Tower : MonoBehaviour
             enemiesInside.Add(other.gameObject);
         }
 
-        if (currentTarget ==null)
+        if (currentTarget == null)
         {
             currentTarget = other.gameObject;
         }
@@ -76,6 +75,18 @@ public class Tower : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             enemiesInside.Remove(other.gameObject);
+            ChangeHealth(-other.gameObject.GetComponent<Enemy>().EnemySo.collisionDamage);
         }    
+    }
+
+    public void ChangeHealth(int changeValue)
+    {
+        health += changeValue;
+        healthBar.SetHealth(health);
+
+        if (health <= -500)
+        {
+            gameObject.SetActive(false);            
+        }
     }
 }

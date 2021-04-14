@@ -18,7 +18,7 @@ public class PlanetScript : MonoBehaviour
     public UnityEvent endPauseGame;
 
     public TextMeshProUGUI earnedCurrency;
-   // public TextMeshProUGUI finalScore;
+    //public TextMeshProUGUI finalScore;
 
     public AudioSource musicSource;
 
@@ -36,8 +36,7 @@ public class PlanetScript : MonoBehaviour
     }
 
     private void Update()
-    {
-        
+    {        
         if ( ! EventSystem.current.IsPointerOverGameObject())
         {
 //#if UNITY_EDITOR
@@ -63,8 +62,7 @@ public class PlanetScript : MonoBehaviour
                 }
                 newTower.transform.position = myTouch.position;
             }
-        }
-       
+        }       
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -79,10 +77,9 @@ public class PlanetScript : MonoBehaviour
         if (other.gameObject.CompareTag("EnemyBullet") )
         {
             ChangeHealth(-other.gameObject.GetComponent<EnemyBullet>().damage);
-            Debug.Log("Я в скрипте");
+            //Debug.Log("Я в скрипте");
             other.gameObject.SetActive(false);
-        }
-        
+        }        
     }
 
     public void ChangeHealth(int changeValue)
@@ -90,9 +87,7 @@ public class PlanetScript : MonoBehaviour
         //Change health value based on the parameter stated in the enemy or bullet (not decided yet)
         health += changeValue;
         if (health > maxHealth) health = maxHealth;
-        healthBar.SetHealth(health);
-      
-        
+        healthBar.SetHealth(health);    
 
         if (health <= 0)
         {    //trigger game over 
@@ -104,13 +99,11 @@ public class PlanetScript : MonoBehaviour
 
             musicSource.clip = uLoseMusic;
             musicSource.Play();
-
         }
     }
 
     public GameObject createTower(string type, int cost)
-    {
-        
+    {        
         if (money - cost<0)
         {
             Debug.Log("you have no money");
@@ -136,6 +129,5 @@ public class PlanetScript : MonoBehaviour
         maxHealth = newMaxHealth;
         health = maxHealth;
         healthBar.SetHealth(maxHealth);
-    }
-    
+    }    
 }
