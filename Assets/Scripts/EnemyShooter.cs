@@ -1,7 +1,20 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+
+
+
+
+
+
+    //                                                            //
+
+//                SCRIPT IS NOT USED IN FINAL GAMEPLAY                //
+
+    //                                                            //
+
+
+
+
+
 
 public class EnemyShooter : MonoBehaviour
 {
@@ -16,7 +29,6 @@ public class EnemyShooter : MonoBehaviour
         {
             if (lastFire + delay <= Time.time)
             {
-                
                 GameObject newBullet = ObjectPooling.instance.GetObject(1);
                 newBullet.transform.position = gameObject.transform.position;
                 newBullet.gameObject.SetActive(true);

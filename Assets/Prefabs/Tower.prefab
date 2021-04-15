@@ -130,7 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentTarget: {fileID: 0}
   lastFire: 0
-  turretFireDelay: 0.1
+  turretFireDelay: 0.3
   towerDamage: 5
   enemiesInside: []
   health: 500
