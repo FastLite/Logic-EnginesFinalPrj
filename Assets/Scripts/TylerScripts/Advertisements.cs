@@ -6,12 +6,8 @@ using UnityEngine.Advertisements;
 public class Advertisements : MonoBehaviour, IUnityAdsListener
 {
 
-#if UNITY_IOS
-    private string gameId = "4006652";
-#elif UNITY_ANDROID
-    private string gameId = "4006653";
-#endif
 
+    private string gameId = "4006653";
     bool testMode = true;
 
     public string placementIdBanner = "bannerad1";

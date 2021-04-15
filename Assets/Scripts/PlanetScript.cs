@@ -13,6 +13,7 @@ public class PlanetScript : MonoBehaviour
     public int score;
     //Money or resources are used to place turrets
     public int money;
+    public float pressTimeCheck;
 
     //Reference to healthBar script used to display health
     public PlanetHealthBar healthBar;
@@ -57,7 +58,7 @@ public class PlanetScript : MonoBehaviour
             }
             
             //Get touch position and place tower there
-            if (Input.touchCount > 0)
+            if (Input.touchCount > 0 && Time.time > pressTimeCheck + 0.5)
             {
                 var myTouch = Input.GetTouch(0);
 
@@ -69,6 +70,7 @@ public class PlanetScript : MonoBehaviour
                     return;
                 }
                 newTower.transform.position = myTouch.position;
+                pressTimeCheck = Time.time;
             }
         }       
     }
